@@ -1,0 +1,74 @@
+select {
+  color-scheme: dark;
+}
+select option {
+  background: #10192a;
+  color: #dce8fa;
+}
+@supports (appearance: base-select) {
+  select:not([multiple]),
+  ::picker(select) {
+    appearance: base-select;
+  }
+  select:not([multiple]) {
+    align-items: center;
+    gap: 14px;
+    transition:
+      border-color 150ms ease,
+      background-color 150ms ease;
+  }
+  select:not([multiple]):open {
+    border-color: #72a7ff;
+    background-color: #16243d;
+  }
+  select::picker-icon {
+    color: #a7b5d1;
+    transition: transform 180ms var(--ease);
+  }
+  select:open::picker-icon {
+    transform: rotate(180deg);
+  }
+  ::picker(select) {
+    margin-block: 7px;
+    padding: 5px;
+    border: 1px solid #465b7c;
+    border-radius: 10px;
+    background: #10192a;
+    color: #dce8fa;
+    box-shadow: 0 12px 32px #0008;
+    max-height: min(360px, 60dvh);
+    overflow-y: auto;
+  }
+  select option {
+    padding: 9px 12px;
+    min-height: 36px;
+    gap: 12px;
+    border-radius: 5px;
+    font: inherit;
+    line-height: 1.35;
+  }
+  select option:checked {
+    background: #1c355c;
+    color: #f4f7ff;
+    font-weight: 500;
+  }
+  select option:hover,
+  select option:focus-visible {
+    background: #233e64;
+    color: #f4f7ff;
+  }
+  select option:disabled {
+    color: #71829f;
+  }
+  select option::checkmark {
+    color: #9dc4ff;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) select::picker-icon {
+    transition: none;
+  }
+}
+:root[data-motion="reduced"] select::picker-icon {
+  transition: none;
+}

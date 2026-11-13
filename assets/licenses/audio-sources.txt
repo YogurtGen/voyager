@@ -1,0 +1,16 @@
+Voyager audio credits — Reverse: 1999
+
+Startup: Voyager — Select Ultimate. Reverse: 1999 / Bluepoch.
+Source: https://reverse1999.fandom.com/wiki/Voyager/Voicelines
+Audio page: https://reverse1999.fandom.com/wiki/File:Voyager_Select_Ultimate.ogg
+Local filename: assets/audio/startup.ogg
+
+Pairing: user-supplied Reverse: 1999 recording 29. Login Screen.mp3.
+Local filename: assets/audio/login.mp3
+
+Collection: user-supplied Reverse: 1999 recording 24. Home Lobby.mp3.
+Local filename: assets/audio/lobby.mp3
+
+These recordings retain the original rights holders' copyright. They are
+separate from the MIT application source; no blanket redistribution license
+is asserted. See docs/MEDIA-CREDITS.md for attribution and license boundaries.

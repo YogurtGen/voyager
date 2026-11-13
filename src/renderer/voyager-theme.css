@@ -1,0 +1,1543 @@
+:root {
+  color: #f4f7ff;
+  background: #05070d;
+  --mint: #72a7ff;
+  --lime: #e8c77a;
+  --muted: #a7b5d1;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  color-scheme: dark;
+  --voyager-space: #05070d;
+  --voyager-base: #0b1226;
+  --voyager-panel: #10192a;
+  --voyager-raised: #16243d;
+  --voyager-input: #0d172b;
+  --voyager-line: #344a6b;
+  --voyager-control-line: #6c80a3;
+  --voyager-text: #f4f7ff;
+  --voyager-secondary: #a7b5d1;
+  --voyager-blue: #72a7ff;
+  --voyager-action: #275fc9;
+  --voyager-selected: #1c355c;
+  --voyager-gold: #e8c77a;
+  --voyager-danger: #ffacb9;
+}
+h1,
+h2,
+h3 {
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+button,
+input,
+select,
+textarea {
+  accent-color: #72a7ff;
+}
+input,
+select,
+textarea {
+  background-color: #121d35;
+  border-color: #6c80a3;
+}
+.brand {
+  color: #f4f7ff;
+  font-weight: 500;
+  letter-spacing: -0.9px;
+}
+.brand > span {
+  color: #f4f7ff;
+}
+.button {
+  background: #17243c;
+  border: 1px solid #6c80a3;
+  color: #f4f7ff;
+  border-radius: 8px;
+}
+.button.primary,
+.play-button {
+  background: #275fc9;
+  color: #f4f7ff;
+  border-color: #72a7ff;
+}
+.button.ghost {
+  background: transparent;
+  color: #f4f7ff;
+}
+.host-header {
+  background: #05070de6;
+  border-bottom: 1px solid #26344b;
+}
+.pair-code-button,
+.icon-button,
+.settings-menu,
+.modal,
+.dialog,
+.join-card,
+.pairing-card,
+.player-slot,
+.native-card {
+  background-color: #10192a;
+}
+.settings-menu {
+  border: 1px solid #6c80a3;
+}
+.settings-menu button:hover {
+  background: #1d3152;
+}
+.pair-code-button {
+  font-size: 20px;
+}
+.header-no-players {
+  color: #a7b5d1;
+}
+.modal-backdrop,
+.modal-overlay {
+  background: #02040bc9;
+}
+.modal {
+  border: 1px solid #6c80a3;
+}
+.modal h2 {
+  font-weight: 600;
+}
+.pairing-content .eyebrow,
+.manual-code,
+.connection-pill {
+  color: #b4ceff;
+}
+.manual-connect,
+.connection-pill,
+.player-slots,
+.slot,
+.help-box,
+.network-address {
+  background-color: #121d35;
+}
+.slot,
+.player-slot {
+  border-color: #465f83;
+}
+.qr {
+  background: white;
+}
+.splash,
+.startup-error {
+  background: #05070d;
+}
+.join-screen,
+.phone-shell,
+.controller-shell,
+.controller-page,
+.phone,
+.controller {
+  background-color: #0b1226;
+}
+.builder-overlay,
+.library-workspace,
+.studio-workspace,
+.builder-shell {
+  background-color: #0b1226;
+}
+.builder-kicker,
+.builder-primary {
+  color: #dce9ff;
+}
+.builder-primary {
+  background-color: #275fc9;
+}
+.library-card-menu,
+.library-delete-dialog {
+  background-color: #10192a;
+  border-color: #6c80a3;
+}
+.library-card-menu button:hover {
+  background: #1c3154;
+}
+
+/* Shared application chrome. Player identities and authored controller colors stay data-driven. */
+input::placeholder,
+textarea::placeholder {
+  color: var(--voyager-secondary);
+  opacity: 0.8;
+}
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--voyager-blue);
+  outline-offset: 3px;
+}
+.builder-overlay button:focus-visible,
+.builder-overlay input:focus-visible,
+.builder-overlay textarea:focus-visible,
+.builder-overlay select:focus-visible,
+.guide-card button:focus-visible,
+.store-game-picker .store-game-row:focus-visible,
+.studio-model-palette > button:focus-visible,
+.studio-edit-control:focus-visible,
+.shelf-arrow:focus-visible {
+  outline: 2px solid var(--voyager-blue);
+}
+.host-header .header-right .button,
+.host-header .pair-code-button,
+.host-header .icon-button {
+  border: 1px solid #415a80;
+  background: var(--voyager-panel);
+  color: var(--voyager-text);
+  border-radius: 9px;
+}
+.host-header .header-right .button:hover,
+.host-header .pair-code-button:hover,
+.host-header .icon-button:hover:not(:disabled) {
+  border-color: var(--voyager-blue);
+  background: var(--voyager-raised);
+}
+.header-avatars:hover {
+  background: var(--voyager-raised);
+}
+.settings-menu .menu-label,
+.settings-menu hr,
+.modal-description,
+.manage-player small,
+.empty-players,
+.empty-players p,
+.pairing-copy > p,
+.pairing-scan > small {
+  color: var(--voyager-secondary);
+  border-color: var(--voyager-line);
+}
+.settings-menu button {
+  color: var(--voyager-text);
+}
+.modal-heading .icon-button {
+  background: var(--voyager-raised);
+  border: 1px solid var(--voyager-control-line);
+  color: var(--voyager-text);
+}
+.modal-heading .icon-button:hover:not(:disabled) {
+  background: var(--voyager-selected);
+}
+.manage-player {
+  border-color: var(--voyager-line);
+}
+.manage-actions button {
+  color: #bfd7ff;
+}
+.manage-actions .danger-text,
+.danger-text {
+  color: var(--voyager-danger);
+}
+.empty-players h3 {
+  color: var(--voyager-text);
+}
+.player-slots {
+  background: transparent;
+}
+.player-slot:hover {
+  background: var(--voyager-raised);
+}
+.player-slot.filled {
+  background: #172b47;
+  border-color: #5b7eac;
+}
+.player-slot small {
+  color: var(--voyager-secondary);
+}
+.connection-pill {
+  color: #c2d9ff;
+  background: #192e4b;
+}
+.connection-pill.warning,
+.network-alert {
+  background: #41351e;
+  color: #f2dcae;
+}
+.network-note {
+  color: var(--voyager-secondary) !important;
+}
+.network-address {
+  border: 1px solid var(--voyager-line);
+  background: var(--voyager-input);
+}
+.network-address span,
+.network-address small,
+.help-box p {
+  color: var(--voyager-secondary);
+}
+.network-address strong {
+  color: #c7dcff;
+}
+.help-box {
+  background: var(--voyager-raised);
+  border: 1px solid var(--voyager-line);
+}
+.locked-qr {
+  background: var(--voyager-raised);
+  border: 1px solid var(--voyager-control-line);
+  color: #c6d8f4;
+}
+.pending-card {
+  background: var(--voyager-panel);
+  border-color: #6d93c9;
+}
+.pending-card .eyebrow,
+.pending-card p b {
+  color: #d0e2ff;
+}
+.pending-card p {
+  color: var(--voyager-secondary);
+}
+.toast {
+  background: var(--voyager-raised);
+  border-color: var(--voyager-control-line);
+  color: var(--voyager-text);
+}
+
+/* Collection controls share the same surface, focus and corner treatment as the editors. */
+main.voyager-library .voyager-library-tools .search-field {
+  border: 1px solid var(--voyager-control-line);
+  border-radius: 8px;
+  padding: 0 12px;
+  background: var(--voyager-panel);
+  color: var(--voyager-secondary);
+  min-height: 42px;
+  gap: 9px;
+}
+main.voyager-library .search-field:focus-within {
+  outline: 2px solid var(--voyager-blue);
+  outline-offset: 2px;
+}
+main.voyager-library .search-field input {
+  background: transparent;
+  color: var(--voyager-text);
+  outline: none;
+  line-height: 1.4;
+}
+main.voyager-library .search-field > svg {
+  color: #b3c8e8;
+}
+main.voyager-library .search-field button {
+  color: #c8d9f1;
+}
+main.voyager-library .library-filters select {
+  background: var(--voyager-panel);
+  border-color: var(--voyager-control-line);
+  border-radius: 7px;
+  color: #c2cee3;
+  padding: 8px 12px;
+}
+main.voyager-library .library-filters select:hover {
+  border-color: var(--voyager-blue);
+}
+main.voyager-library .library-filters > button,
+main.voyager-library .disc-utility button {
+  color: #b9cce9;
+  border-radius: 6px;
+}
+main.voyager-library .library-filters > button:hover,
+main.voyager-library .disc-utility button:hover {
+  color: var(--voyager-text);
+  background: #152640;
+}
+main.voyager-library .voyager-library-tools .view-tabs button {
+  color: var(--voyager-secondary);
+  font-weight: 500;
+}
+main.voyager-library .voyager-library-tools .view-tabs button.active {
+  color: var(--voyager-text);
+  border-color: var(--voyager-blue);
+}
+main.voyager-library .voyager-library-tools .view-tabs button:hover {
+  color: #dce8ff;
+}
+main.voyager-library .library-add-game {
+  background: var(--voyager-panel);
+  border-color: var(--voyager-control-line);
+  border-radius: 8px;
+  color: var(--voyager-text);
+  font-weight: 500;
+}
+main.voyager-library .library-add-game:hover {
+  background: var(--voyager-raised);
+  border-color: var(--voyager-blue);
+}
+.trailer-controls button,
+.game-lobby-top > .button,
+.game-lobby-controller .button {
+  border-color: var(--voyager-control-line);
+  border-radius: 8px;
+}
+.text-action {
+  text-decoration-color: #6f8fb9;
+}
+
+/* Add/Edit Game and the full Controller Studio shell. */
+.builder-overlay {
+  color: var(--voyager-text);
+  background: #050914f5;
+}
+.builder-overlay button {
+  border-color: var(--voyager-control-line);
+  background: var(--voyager-raised);
+  color: var(--voyager-text);
+  font-weight: 500;
+}
+.builder-overlay button:hover:not(:disabled) {
+  background: #223a60;
+  border-color: #8cb7fa;
+}
+.builder-overlay button.builder-primary,
+.builder-overlay button.builder-primary:hover:not(:disabled) {
+  background: var(--voyager-action);
+  border-color: var(--voyager-blue);
+  color: var(--voyager-text);
+}
+.builder-overlay button.builder-quiet {
+  background: transparent;
+  border-color: #4d6587;
+  color: #c4d5ef;
+}
+.builder-overlay button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.builder-overlay button.studio-widget,
+.builder-overlay button.studio-widget:hover:not(:disabled) {
+  color: var(--control-fg);
+  border: 0;
+  background: transparent;
+}
+.builder-overlay input:not([type="checkbox"]):not([type="color"]),
+.builder-overlay textarea,
+.builder-overlay select {
+  background: var(--voyager-input);
+  border-color: var(--voyager-control-line);
+  color: var(--voyager-text);
+  border-radius: 8px;
+  line-height: 1.45;
+}
+.builder-overlay input[type="checkbox"],
+.studio-phone-settings input[type="checkbox"] {
+  accent-color: var(--voyager-blue);
+}
+.builder-overlay small,
+.builder-muted,
+.builder-hint,
+.studio-clipboard-status {
+  color: var(--voyager-secondary);
+}
+.builder-overlay .builder-muted {
+  color: var(--voyager-secondary) !important;
+}
+.builder-overlay p {
+  color: #bdcbe1;
+  line-height: 1.65;
+}
+.builder-overlay h1,
+.builder-overlay h2,
+.builder-overlay h3,
+.builder-overlay h4 {
+  color: var(--voyager-text);
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+.builder-overlay label,
+.builder-field {
+  color: #d0dcee;
+}
+.builder-overlay .builder-kicker,
+.builder-kicker {
+  color: #afccff;
+}
+.builder-error {
+  background: #3e1e2c;
+  color: #ffd1d9 !important;
+  border-color: #a85e72;
+}
+.builder-warning {
+  color: #edd2a1 !important;
+}
+.builder-panel {
+  background: var(--voyager-panel);
+  border-color: var(--voyager-line);
+  border-radius: 12px;
+}
+.builder-overlay .selected,
+.builder-overlay button.selected {
+  background: var(--voyager-selected);
+  color: #e0ebff;
+  border-color: var(--voyager-blue);
+}
+.game-builder,
+.controller-studio {
+  background: var(--voyager-base);
+  border-color: #4c6385;
+  border-radius: 16px;
+}
+.builder-header,
+.studio-editor-header {
+  background: #0d1629;
+  border-color: var(--voyager-line);
+}
+.builder-actions > button {
+  min-height: 36px;
+}
+.builder-steps {
+  background: #0d172b;
+  border-color: var(--voyager-line);
+}
+.builder-steps > button {
+  background: transparent;
+  color: #b8c8e1;
+  border-color: transparent;
+}
+.builder-overlay .builder-steps > button:hover:not(:disabled) {
+  background: #162b4a;
+  border-color: #4b6c9b;
+}
+.builder-steps > button.selected {
+  background: #1a3256;
+  border-color: #577db0;
+  color: var(--voyager-text);
+}
+.builder-steps button span {
+  border-color: #6b82a7;
+  color: #c6daf6;
+}
+.builder-storage {
+  color: var(--voyager-secondary);
+}
+.builder-storage strong {
+  color: #c5d6ee;
+}
+.builder-file {
+  background: var(--voyager-input);
+  border-color: #617da4;
+}
+.builder-file code {
+  color: #bdd4f6;
+}
+.builder-library-preview {
+  background: #0e182b;
+  border-color: var(--voyager-line);
+}
+.builder-preview-cover {
+  background: #152640;
+  border-color: #536d95;
+  border-radius: 12px;
+}
+.builder-preview-cover > strong {
+  color: #c8dcff;
+}
+.builder-preview-tags span {
+  border-color: #48648d;
+  color: #bbd0ef;
+}
+.builder-preview-banner,
+.builder-art-preview {
+  background: #152640;
+  color: var(--voyager-secondary);
+  border-color: #59739a;
+}
+.builder-footer {
+  background: #0e192d;
+  border-color: var(--voyager-line);
+}
+.builder-footer > span {
+  color: var(--voyager-secondary);
+}
+.builder-footer button {
+  min-height: 38px;
+}
+.builder-draft {
+  border-color: #7e7154;
+  background: #332d2066;
+  color: #ecdcbd;
+}
+.builder-preset-cards > div {
+  background: var(--voyager-raised);
+  border-color: #4a6489;
+}
+.builder-readiness span {
+  color: #e6d2aa;
+  background: #40341e66;
+  border-color: #8d7952;
+}
+.builder-readiness .ready {
+  color: #c3dcff;
+  background: #193858;
+  border-color: #5985b7;
+}
+.builder-phone-setup {
+  background: #111f35;
+  border-color: #526e96;
+}
+.builder-phone-pair strong {
+  color: #dce9ff;
+}
+.builder-phone-pair code {
+  color: #bdd5fa;
+}
+.builder-player-slots span {
+  border-color: #5a779e;
+  color: #cbdcf3;
+}
+.builder-pair-request {
+  background: #1b3556;
+}
+.builder-inner-overlay {
+  background: #030711cf;
+}
+.builder-confirm,
+.builder-loading {
+  background: var(--voyager-panel);
+  border-color: #657fa6;
+  color: #d3e3fb;
+}
+.builder-overlay details,
+.studio-binding,
+.studio-selection-tools,
+.studio-canvas-footer,
+.studio-canvas-tools {
+  border-color: var(--voyager-line);
+}
+.builder-overlay summary {
+  color: #c6d9f4;
+}
+.studio-palette,
+.studio-inspector {
+  background: #0e192c;
+  border-color: var(--voyager-line);
+}
+.studio-canvas-column {
+  background: #080f1e;
+}
+.studio-stage-shell {
+  background: #14233c;
+  border-color: #58749e;
+  box-shadow: 0 12px 36px #0005;
+}
+.studio-design-overlay.grid-visible {
+  background-image:
+    linear-gradient(to right, #72a7ff1c 1px, transparent 1px),
+    linear-gradient(to bottom, #72a7ff1c 1px, transparent 1px);
+}
+.studio-design-overlay::after {
+  border-color: #85b5ff70;
+}
+.studio-edit-control:hover {
+  border-color: #94bdff99;
+  background: #72a7ff0a;
+}
+.studio-edit-control.selected {
+  border-color: #a9cbff;
+  background: #72a7ff0d;
+}
+.studio-control-name {
+  color: #dce9ff;
+  background: #0c1a31;
+}
+.studio-resize {
+  background: #c1daff;
+  border-color: #244779;
+}
+.studio-grid-toolbar,
+.studio-bottom-panel {
+  background: #0f1b2f;
+  border-color: var(--voyager-line);
+}
+.studio-grid-toolbar > span,
+.studio-inspector .builder-panel > strong {
+  color: #bdd0eb;
+}
+.studio-bottom-panel .studio-grid-toolbar,
+.studio-bottom-panel .studio-selection-tools,
+.studio-bottom-panel .studio-canvas-footer {
+  border-color: var(--voyager-line);
+}
+.studio-resizable-workspace > .studio-palette,
+.studio-resizable-workspace > .studio-inspector,
+.studio-bottom-panel {
+  scrollbar-color: #526d96 transparent;
+}
+.studio-panel-divider {
+  background: #080f1e;
+}
+.studio-panel-divider.vertical,
+.studio-panel-divider.horizontal {
+  border-color: #293d5b;
+}
+.studio-panel-divider::after {
+  background: #607ca6;
+}
+.studio-panel-divider:hover,
+.studio-panel-divider:focus-visible,
+.studio-panel-divider.is-dragging {
+  background: #1b3356;
+}
+.studio-panel-divider:hover::after,
+.studio-panel-divider:focus-visible::after,
+.studio-panel-divider.is-dragging::after {
+  background: var(--voyager-blue);
+}
+.studio-panel-divider:focus-visible {
+  box-shadow: inset 0 0 0 1px var(--voyager-blue);
+}
+.builder-color input[type="color"] {
+  background: var(--voyager-input);
+  border-color: #59739a;
+}
+.builder-color .color-presets button {
+  border-color: #8ba8ce88;
+}
+.studio-output {
+  background: #0b1628;
+  border-color: #455f84;
+}
+.studio-inspector button.theme-property {
+  background: #111f35;
+  border-color: #4b648a;
+}
+.studio-inspector button.theme-property.selected {
+  background: #1a355a;
+  border-color: var(--voyager-blue);
+  box-shadow: 0 0 0 1px var(--voyager-blue);
+}
+.theme-state-tabs {
+  background: #091324;
+}
+.theme-state-tabs button[aria-pressed="true"] {
+  background: #294e81;
+  color: #e3edff;
+}
+.theme-more-colors > summary,
+.studio-theme-advanced > summary,
+.studio-canvas-colors > p,
+.studio-control-colors > p {
+  color: var(--voyager-secondary);
+}
+.theme-color-editor {
+  background: #0e1d33;
+  border-color: #7897c4;
+}
+.studio-inspector .theme-picker-heading button {
+  background: #253e62;
+}
+.studio-canvas-colors,
+.studio-control-colors {
+  background: #14243c;
+  border-color: #4b648a;
+}
+.studio-theme-advanced {
+  border-color: var(--voyager-line);
+}
+.studio-model-sample {
+  background: #2b4266;
+  border-color: #6c87ae;
+}
+.studio-model-sample.primary {
+  background: var(--voyager-action);
+  border-color: var(--voyager-blue);
+}
+.studio-model-sample.analog {
+  box-shadow:
+    inset 0 0 0 7px #152941,
+    inset 0 0 0 10px #8bb9ff;
+}
+
+/* Import, crop, binding and tutorial dialogs. */
+.running-game-picker,
+.icon-picker,
+.crop-editor,
+.visual-binding-overlay {
+  background: #101c30;
+  border-color: #637fa6;
+  color: var(--voyager-text);
+  border-radius: 16px;
+}
+.running-game-picker p,
+.running-game-picker footer,
+.running-game-choice small,
+.store-game-picker > p,
+.store-game-results,
+.store-game-executable small,
+.store-game-next small,
+.icon-picker > footer > span,
+.crop-editor > footer > span,
+.visual-binding-overlay small,
+.binding-legend {
+  color: var(--voyager-secondary);
+}
+.running-game-picker button,
+.visual-binding-overlay button,
+.visual-binding-overlay select {
+  background: #1b2e4a;
+  border-color: var(--voyager-control-line);
+  color: var(--voyager-text);
+}
+.running-game-choice:hover,
+.running-game-choice:focus-visible {
+  background: #243e65;
+  border-color: var(--voyager-blue);
+}
+.running-game-picker:not(.store-game-picker) {
+  min-height: 0;
+  overflow: hidden;
+}
+.running-game-picker:not(.store-game-picker) > :not(.running-game-list) {
+  flex-shrink: 0;
+}
+.running-game-picker:not(.store-game-picker) .running-game-list {
+  flex: 1 1 auto;
+  min-height: 100px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 3px 2px;
+  scrollbar-width: thin;
+  scrollbar-color: #526b8d transparent;
+}
+.running-game-picker:not(.store-game-picker) .running-game-choice {
+  flex: 0 0 auto;
+  min-height: 88px;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 20px;
+  gap: 12px;
+  padding: 12px 14px;
+}
+.running-game-choice > span:nth-child(2) {
+  overflow: hidden;
+}
+.running-game-choice strong {
+  line-height: 1.3;
+}
+.running-game-choice .running-game-file {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+.running-game-choice small {
+  line-height: 1.4;
+}
+.running-game-search {
+  min-width: 0;
+}
+.running-game-search > label {
+  min-width: 0;
+}
+.running-game-search > button {
+  flex-shrink: 0;
+}
+.running-game-file,
+.running-game-symbol,
+.binding-legend .used {
+  color: #a9cbff;
+}
+.binding-legend .shared {
+  color: var(--voyager-gold);
+}
+.binding-legend .assigned {
+  color: #add5ff;
+}
+.visual-binding-overlay .hardware-scroll {
+  background: var(--voyager-base);
+  border: 1px solid var(--voyager-line);
+  scrollbar-color: var(--voyager-control-line) transparent;
+}
+.visual-binding-overlay button:hover:not(:disabled) {
+  background: var(--voyager-selected);
+  border-color: var(--voyager-blue);
+}
+.visual-binding-overlay .hardware-keyboard-shell {
+  fill: var(--voyager-raised);
+  stroke: var(--voyager-control-line);
+}
+.visual-binding-overlay .hardware-shell-start {
+  stop-color: #30476a;
+}
+.visual-binding-overlay .hardware-shell-end {
+  stop-color: #101c30;
+}
+.visual-binding-overlay [data-device="playstation"] .hardware-shell-start {
+  stop-color: #e0e8f4;
+}
+.visual-binding-overlay [data-device="playstation"] .hardware-shell-end {
+  stop-color: #a5b4cd;
+}
+.visual-binding-overlay .hardware-shell {
+  stroke: var(--voyager-control-line);
+}
+.visual-binding-overlay .hardware-shell-inset {
+  fill: var(--voyager-base);
+}
+.visual-binding-overlay .hardware-key {
+  --key-bg: #17243c;
+  --key-line: #5d7598;
+  --key-text: #e0eaff;
+}
+.visual-binding-overlay .hardware-key.used {
+  --key-bg: var(--voyager-selected);
+  --key-line: var(--voyager-blue);
+}
+.visual-binding-overlay .hardware-key.shared {
+  --key-bg: #3a3021;
+  --key-line: var(--voyager-gold);
+}
+.visual-binding-overlay .hardware-key.assigned {
+  --key-bg: var(--voyager-action);
+  --key-line: #b7d1ff;
+  --key-text: #ffffff;
+}
+.visual-binding-overlay .hardware-key.assigned.is-shared {
+  --key-line: var(--voyager-gold);
+}
+.visual-binding-overlay .hardware-key.reserved {
+  --key-bg: #101722;
+  --key-line: #34425b;
+  --key-text: #7585a1;
+}
+.visual-binding-overlay .hardware-pair circle {
+  fill: var(--key-bg);
+  stroke: var(--key-line);
+}
+.visual-binding-overlay .hardware-pair text {
+  fill: var(--key-text);
+}
+.visual-binding-overlay .hardware-key:focus-visible :is(rect, circle),
+.visual-binding-overlay .hardware-key:hover :is(rect, circle) {
+  stroke: #f4f7ff;
+}
+.visual-binding-overlay .hardware-callouts path {
+  stroke: #8fa8cd;
+}
+.visual-binding-overlay .hardware-callouts text {
+  fill: var(--voyager-text);
+  stroke: var(--voyager-base);
+}
+.visual-binding-overlay .hardware-caption,
+.visual-binding-overlay .binding-legend .unused,
+.visual-binding-body aside p,
+.visual-binding-body aside small,
+.visual-binding-overlay .binding-chips > span {
+  color: var(--voyager-secondary);
+}
+.visual-binding-overlay .hardware-caption {
+  fill: var(--voyager-secondary);
+}
+.visual-binding-overlay .hardware-info {
+  background: var(--voyager-raised);
+  border: 1px solid var(--voyager-line);
+  color: var(--voyager-secondary);
+}
+.store-game-results > span:last-child {
+  color: #9bafcd;
+}
+.store-game-picker .store-game-row {
+  background: #14233b;
+  border-color: #3f587c;
+}
+.store-game-picker .store-game-row:hover:not(:disabled) {
+  background: #1d3354;
+  border-color: #8db9fa;
+}
+.store-game-picker .store-game-row.selected,
+.store-game-picker .running-game-choice.selected {
+  background: #1b3559;
+  border-color: var(--voyager-blue);
+  box-shadow: inset 0 0 0 1px var(--voyager-blue);
+}
+.store-game-picker .store-game-row:disabled {
+  background: #101b2e;
+  border-color: #344764;
+  color: #9baecb;
+}
+.store-game-picker .store-game-copy > small,
+.store-game-meta {
+  color: #b0c0d9;
+}
+.store-game-badge {
+  background: #0b1628;
+  color: #c3d6f2;
+}
+.store-game-logo {
+  background: #223a5e;
+  color: #b7d3ff;
+}
+.store-game-pickmark {
+  border-color: #6c85a9;
+  color: #c4d6ee;
+}
+.store-game-row.selected .store-game-pickmark {
+  color: var(--voyager-text);
+  border-color: var(--voyager-blue);
+  background: var(--voyager-action);
+}
+.store-game-executable,
+.icon-picker-scroll {
+  background: #0c182b;
+  border-color: #49658d;
+}
+.icon-choice {
+  color: #c8dcf9 !important;
+}
+.icon-cell.selected .icon-choice {
+  border-color: var(--voyager-blue) !important;
+  background: #264c7b88 !important;
+}
+.store-game-picker footer,
+.icon-picker > footer,
+.crop-editor > footer {
+  border-color: var(--voyager-line);
+}
+.store-game-next strong {
+  color: #dbe8fa;
+}
+.store-game-picker footer .builder-primary {
+  border-color: var(--voyager-blue);
+  background: var(--voyager-action);
+  color: var(--voyager-text);
+}
+.store-game-picker footer .builder-primary:disabled {
+  background: #253c5b;
+  color: #a7bad7;
+  border-color: #536c91;
+}
+.crop-stage-area {
+  background: repeating-conic-gradient(#121e33 0% 25%, #1b2d47 0% 50%) 50% /
+    18px 18px;
+  border-color: #58739a;
+}
+.crop-selection {
+  border-color: #b1d1ff;
+}
+.crop-selection::after {
+  background-image:
+    linear-gradient(
+      to right,
+      transparent 32.8%,
+      #d2e3ff55 33%,
+      #d2e3ff55 33.3%,
+      transparent 33.5%,
+      transparent 66%,
+      #d2e3ff55 66.3%,
+      transparent 66.6%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 32.8%,
+      #d2e3ff55 33%,
+      #d2e3ff55 33.3%,
+      transparent 33.5%,
+      transparent 66%,
+      #d2e3ff55 66.3%,
+      transparent 66.6%
+    );
+}
+.crop-handle {
+  background: #c3dcff;
+  border-color: #254875;
+}
+.crop-result-frame {
+  background: #0b1527;
+  border-color: #4f6b94;
+}
+.guided-tour {
+  color: var(--voyager-text);
+}
+.guide-shade {
+  background: #030711cf;
+}
+.guide-highlight {
+  border-color: #aacbff;
+  box-shadow:
+    0 0 0 1px #72a7ff44,
+    0 0 24px #72a7ff18;
+}
+.guide-card {
+  background: #102038;
+  border-color: #7594c1;
+  border-radius: 14px;
+}
+.guide-topline,
+.guide-topline > button,
+.guide-card small,
+.guide-card .guide-skip {
+  color: #b2c5e2;
+}
+.guide-topline > button {
+  color: #c4d8f5 !important;
+}
+.guide-progress {
+  background: #263e60;
+}
+.guide-progress > i {
+  background: var(--voyager-blue);
+}
+.guide-card h2 {
+  color: var(--voyager-text);
+}
+.guide-card p {
+  color: #ccd9ee;
+}
+.guide-card footer {
+  border-color: #45618a;
+}
+.guide-card button {
+  background: #223a5f;
+  border-color: var(--voyager-control-line);
+  color: var(--voyager-text);
+}
+.guide-card .guide-next {
+  background: var(--voyager-action);
+  color: var(--voyager-text);
+  border-color: var(--voyager-blue);
+}
+.guide-card .guide-skip {
+  background: transparent;
+}
+.builder-overlay .guide-help {
+  color: #c3d9fb;
+  background: #1b3151;
+  border-color: #6a83a9;
+}
+.builder-overlay .guide-help:hover {
+  background: #294b7b;
+  color: var(--voyager-text);
+}
+.library-card-menu,
+.library-delete-dialog {
+  background: #101d31;
+  border-color: #6a83a9;
+  color: var(--voyager-text);
+}
+.library-card-menu button {
+  color: var(--voyager-text);
+}
+.library-card-menu button small,
+.library-card-menu p,
+.library-delete-dialog p {
+  color: var(--voyager-secondary);
+}
+.library-card-menu button:hover,
+.library-card-menu button:focus-visible {
+  background: var(--voyager-selected);
+  outline-color: var(--voyager-blue);
+}
+.library-delete-backdrop {
+  background: #030711cf;
+}
+.library-delete-dialog small {
+  color: #b4cfff;
+}
+.library-delete-actions button {
+  background: #1d3558;
+  color: var(--voyager-text);
+  border-color: var(--voyager-control-line);
+}
+.library-card-menu .danger,
+.library-delete-dialog .library-delete-error {
+  color: var(--voyager-danger);
+}
+.library-delete-actions .danger {
+  background: #723347;
+  color: #fff0f4;
+  border-color: #c17b91;
+}
+
+/* Session and phone chrome retain the existing touch layouts and player colors. */
+.lab-heading p,
+.lab-live,
+.lab-help,
+.native-session > p,
+.native-mode-picker > small,
+.native-gamepad-status,
+.native-player small,
+.native-player div > button,
+.native-footnote {
+  color: var(--voyager-secondary);
+}
+.lab-heading .eyebrow,
+.native-heading .eyebrow,
+.native-mode-picker > .eyebrow {
+  color: #b1cbf1;
+}
+.layout-switch,
+.native-mode-buttons,
+.native-phone-modes {
+  background: #0e1b30;
+}
+.layout-switch button,
+.native-mode-buttons button,
+.native-phone-modes button {
+  color: #afc2df;
+}
+.layout-switch button.active,
+.native-mode-buttons button.active,
+.native-phone-modes button.active {
+  background: #284d7f;
+  color: var(--voyager-text);
+}
+.arenas {
+  background: #101e35;
+  border-color: #425d84;
+}
+.arena {
+  background: #101d32;
+}
+.arena-grid {
+  background-image:
+    linear-gradient(#5f8bc51a 1px, transparent 1px),
+    linear-gradient(90deg, #5f8bc51a 1px, transparent 1px);
+}
+.arena::after {
+  border-color: #6d91c444;
+}
+.arena-center {
+  color: #9bc1ff22;
+}
+.arena-center span {
+  color: #9cb4db77;
+}
+.arena-corner {
+  color: #9ab8e1;
+}
+.arena-empty {
+  background: #0b182bd9;
+  color: #c4dcff;
+}
+.arena-empty h2 {
+  color: var(--voyager-text);
+}
+.arena-empty p {
+  color: var(--voyager-secondary);
+}
+.native-stage {
+  background: var(--voyager-panel);
+  border-color: #4c6384;
+}
+.native-status {
+  color: #efd6a3;
+  background: #42351e;
+}
+.native-status.is-active {
+  color: #d5e6ff;
+  background: #1b3c60;
+}
+.native-mode-picker {
+  border-color: var(--voyager-line);
+}
+.native-player {
+  border-color: #3e587d;
+  background: #111f34;
+  color: #afc3df;
+}
+.native-player-slot {
+  color: #b9d5ff;
+}
+.native-player strong {
+  color: var(--voyager-text);
+}
+.configured-game-screen .native-art::after {
+  background: linear-gradient(transparent, #081326e0);
+}
+.phone-onboarding,
+.phone-controller {
+  background: var(--voyager-base);
+}
+.phone-pair-card > .eyebrow,
+.lab-controller-title .eyebrow {
+  color: #afc9ee;
+}
+.phone-pair-card > p,
+.phone-footer,
+.waiting-label,
+.controller-connection,
+.lab-controller-footer,
+.lab-controller-footer button {
+  color: var(--voyager-secondary);
+}
+.phone-pair-card .field-label {
+  color: #d0dcee;
+}
+.phone-pair-card input {
+  background: var(--voyager-input);
+  border-color: var(--voyager-control-line);
+}
+.verification-code {
+  color: #d6e6ff;
+  border-color: #6988b5;
+  background: #132440;
+}
+.controller-top .brand,
+.controller-toolbar {
+  background: #0a1426;
+}
+.controller-top .icon-button {
+  color: #b6c9e4;
+}
+.controller-identity {
+  background: #15233b;
+}
+.controller-identity .avatar {
+  border-color: #405a7e;
+}
+.controller-toolbar .icon-button {
+  background: #1a3152;
+  color: var(--voyager-text);
+}
+.phone-modal-overlay {
+  background: #050b18e8;
+}
+.phone-edit-modal,
+.studio-phone-settings {
+  background: #14233bf5;
+  border-color: #617ea6;
+}
+.phone-edit-modal input {
+  background: #0d192e;
+  border-color: var(--voyager-control-line);
+}
+.fullscreen-hint {
+  color: #deebff;
+  background: #1d3455;
+  border-color: #6b89b3;
+}
+.controller-message,
+.phone-error {
+  color: #f4dfb9 !important;
+  background: #48371f;
+  border-color: #a08555;
+}
+.controller-reconnect {
+  background: #0b172bd9;
+  color: #dce9ff;
+}
+.controller-reconnect svg {
+  color: #adcfff;
+}
+.controller-reconnect small,
+.studio-phone-settings p,
+.studio-fit-message p,
+.studio-compact-note {
+  color: var(--voyager-secondary);
+}
+.studio-fit-message,
+.studio-phone {
+  color: #e0eaff;
+}
+.studio-compact-note {
+  background: #0c1930d9;
+}
+.studio-phone-toolbar button,
+.studio-phone-modes button,
+.studio-phone-modes select,
+.studio-phone-settings button,
+.studio-phone-rotate {
+  background: #1a3151;
+  color: #d7e7ff;
+  border-color: #5d7da8;
+}
+.studio-phone-modes .selected {
+  background: #315b92;
+  color: var(--voyager-text);
+}
+.studio-phone-notice {
+  background: #1a355c99;
+  color: #c2d7f8;
+}
+.phone-console-brand {
+  background: #07142a70;
+}
+.phone-console-modebar .studio-phone-modes {
+  background: #08162b70;
+}
+.native-phone-live,
+.native-phone-paused,
+.native-spectator,
+.native-spectator p {
+  color: var(--voyager-secondary);
+}
+.touch-button {
+  background: #223651;
+  color: #e1ebfc;
+}
+.touch-button.held {
+  background: #365b8d;
+  color: #f0f6ff;
+}
+.profile-lab .touch-button.direction {
+  background: #243e60;
+}
+.profile-lab .touch-button.held {
+  background: var(--player);
+  color: #10213a;
+}
+.confirm,
+.dpad-center {
+  border-color: #0c172a;
+}
+.dpad-center {
+  background: #13233a;
+  color: #6e92c2;
+}
+.profile-lab .dpad-center {
+  border-color: #0c172a;
+}
+.face {
+  background: #253c5c;
+  box-shadow: 0 5px 0 #0b172a;
+  border-color: #8bafdf33;
+}
+.face.held {
+  color: #12213a;
+}
+.utility-control {
+  background: #192e4c;
+  border-color: #56749b;
+  color: #c2d8f7;
+}
+.native-shoulders .shoulder {
+  background: #203b60;
+  border-color: #6583ad;
+  color: #d0e2fb;
+}
+.native-utility .native-confirm {
+  color: #d8e8ff;
+  border-color: #84a9dc;
+}
+.speedstorm-techniques .touch-button,
+.speedstorm-tools .touch-button,
+.speedstorm-skill,
+.speedstorm-dash,
+.speedstorm-pause {
+  background: #1d3454;
+  border-color: #5e7fa9;
+  color: #d3e4fb;
+}
+.speedstorm-techniques .speedstorm-hop {
+  background: #28456f;
+  color: #d4e6ff;
+}
+.speedstorm-skill > span {
+  color: #afd0ff;
+}
+.speedstorm-pedals .race-throttle {
+  background: #264368;
+  border-color: #7898c2;
+  color: #e0edff;
+}
+.control-style-classic .speedstorm-techniques .speedstorm-drift {
+  background: #254269;
+  border-color: #7698c4;
+  color: #d8e8ff;
+}
+.control-style-classic .speedstorm-pedals .race-throttle {
+  background: var(--player);
+  border: 0;
+  color: #10213a;
+}
+.speedstorm-style-settings h3 {
+  color: #e0eaff;
+}
+.speedstorm-style-choices button {
+  background: #132440;
+  border-color: #627fa6;
+  color: #c5d8f2;
+}
+.speedstorm-style-choices button[aria-pressed="true"] {
+  background: #244a7a;
+  border-color: #a4c9ff;
+  color: #edf5ff;
+  box-shadow: inset 0 0 0 1px #a4c9ff;
+}
+.speedstorm-style-settings > p,
+.speedstorm-input-help > p {
+  color: var(--voyager-secondary);
+}
+.brawl-stick {
+  border-color: #5f80ab;
+  background: radial-gradient(
+    circle,
+    #28456a 0 32%,
+    #142741 33% 62%,
+    #2d4a70 63% 65%,
+    #102039 66%
+  );
+}
+.profile-brawlhalla .brawl-stick-direction {
+  color: #c0d7f5;
+}
+.profile-brawlhalla .brawl-stick-direction.held {
+  color: #f0f6ff;
+  background: #3e669b;
+  border-color: var(--player);
+}
+.brawl-stick-thumb {
+  background: #294b75;
+  border-color: #84a5d2;
+  color: #d0e3fb;
+}
+.profile-brawlhalla .brawl-utility {
+  border-color: #55749f;
+}
+.native-phone-paused {
+  color: #e9cd99;
+}
+.native-spectator h2 {
+  color: #e3edff;
+}
+.personal-layout-editor {
+  background: #050b1680;
+}
+.personal-layout-bar {
+  background: #11223cf5;
+  border-color: #88ace0;
+  color: #e4eeff;
+}
+.personal-layout-bar small {
+  color: var(--voyager-secondary);
+}
+.personal-layout-bar button {
+  background: #223c60;
+  color: var(--voyager-text);
+  border-color: #6c88af;
+}
+.personal-layout-bar button.done {
+  background: var(--voyager-action);
+  color: var(--voyager-text);
+  border-color: var(--voyager-blue);
+}
+.personal-layout-handle {
+  border-color: #a3c8ff;
+  background: #72a7ff26;
+}
+.personal-layout-handle > span {
+  background: #0c1c35dd;
+  color: #e3edff;
+}
+.personal-layout-handle > button {
+  background: #c2dcff;
+  color: #112a4c;
+  border-color: #3d669a;
+}
+[data-motion="reduced"] *,
+[data-motion="reduced"] *::before,
+[data-motion="reduced"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) *,
+  :root:not([data-motion="full"]) *::before,
+  :root:not([data-motion="full"]) *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

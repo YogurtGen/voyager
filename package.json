@@ -1,0 +1,104 @@
+{
+  "name": "voyager-console",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Open-source Windows console with phone controllers, a 3D disc library, and AI-editable game layouts.",
+  "author": "YogurtGen and WaterConsole contributors",
+  "license": "MIT",
+  "type": "module",
+  "main": "build/electron/main.cjs",
+  "scripts": {
+    "setup": "node scripts/run-local.mjs --install",
+    "dev": "node scripts/run-local.mjs scripts/dev.mjs",
+    "start": "node scripts/launch-project.mjs",
+    "build": "node scripts/run-local.mjs scripts/build.mjs",
+    "typecheck": "node scripts/run-local.mjs node_modules/typescript/bin/tsc --noEmit",
+    "test": "node scripts/run-local.mjs node_modules/vitest/vitest.mjs run",
+    "test:e2e": "node scripts/run-local.mjs scripts/e2e.mjs",
+    "test:workflow": "node scripts/run-local.mjs scripts/test-project-workflow.mjs",
+    "format": "node scripts/run-local.mjs node_modules/prettier/bin/prettier.cjs --write src scripts tests *.ts *.json",
+    "pack": "npm run build && node scripts/run-local.mjs node_modules/electron-builder/cli.js --win --x64 --dir",
+    "dist": "npm run build && node scripts/run-local.mjs node_modules/electron-builder/cli.js --win nsis zip --x64 && npm run release:organize",
+    "release:organize": "node scripts/run-local.mjs scripts/organize-release.mjs"
+  },
+  "dependencies": {
+    "@fastify/static": "^10.1.7",
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/nunito-sans": "^5.3.0",
+    "fastify": "^5.12.7",
+    "qrcode": "^1.5.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "ws": "^8.22.0"
+  },
+  "build": {
+    "appId": "org.voyager.console",
+    "productName": "Voyager",
+    "copyright": "Copyright © 2026 WaterConsole contributors",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "build/**/*",
+      "package.json",
+      "LICENSE",
+      "assets/icon.ico",
+      "assets/audio/**/*",
+      "assets/licenses/**/*",
+      "assets/ASSET-LICENSES.md"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "build/native/*.{exe,dll}"
+    ],
+    "extraResources": [
+      {
+        "from": "scripts/configure-firewall.ps1",
+        "to": "configure-firewall.ps1"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ],
+      "icon": "assets/icon.ico",
+      "signExecutable": false,
+      "artifactName": "Voyager-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "artifactName": "Voyager-Setup-${version}-${arch}.${ext}",
+      "include": "scripts/installer.nsh"
+    },
+    "publish": null
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/ws": "^8.18.2",
+    "@vitejs/plugin-react": "^6.1.2",
+    "electron": "^45.0.0",
+    "electron-builder": "^26.15.3",
+    "esbuild": "^0.28.2",
+    "prettier": "^3.9.10",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YogurtGen/voyager.git"
+  },
+  "homepage": "https://github.com/YogurtGen/voyager#readme",
+  "bugs": {
+    "url": "https://github.com/YogurtGen/voyager/issues"
+  }
+}

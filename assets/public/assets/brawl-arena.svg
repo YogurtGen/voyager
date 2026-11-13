@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Four fighters on a floating arena</title>
+  <desc id="desc">Original WaterConsole platform-fighting illustration with four colored abstract fighters, floating stone platforms and a mountain sky.</desc>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#10294a"/><stop offset="1" stop-color="#407f8a"/></linearGradient>
+    <linearGradient id="stone" x2="0" y2="1"><stop stop-color="#2a5661"/><stop offset="1" stop-color="#132b40"/></linearGradient>
+    <linearGradient id="rim" x2="1"><stop stop-color="#9fe5d9"/><stop offset="1" stop-color="#daf5cf"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#9bd9c8" stop-opacity=".23"/><stop offset="1" stop-color="#9bd9c8" stop-opacity="0"/></radialGradient>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h1600v900H0z"/>
+  <ellipse cx="800" cy="410" rx="690" ry="430" fill="url(#halo)"/>
+  <circle cx="1240" cy="200" r="92" fill="#f6df9c" opacity=".84"/>
+  <path d="M-80 608 180 305l188 224L594 257l208 302 219-243 219 206 181-177 252 267v288H-80Z" fill="#183e58" opacity=".8"/>
+  <path d="m-45 743 258-211 164 142 247-210 238 215 189-172 226 205 155-105 215 187v106H-45Z" fill="#1b4a5a"/>
+  <g fill="none" stroke="#d7f0dd" stroke-width="4" stroke-linecap="round" opacity=".2"><path d="M115 202h145m-96 20h87m784 138h98M652 153h109"/><path d="m94 449 52-8m1362 126 48 12m-505-479 27-4"/></g>
+  <g fill="url(#stone)"><path d="m278 643 143 133 188 46 187-20 184 35 202-71 145-123Z"/><path d="m405 438 56 67h172l67-67Z"/><path d="m946 367 61 64h158l68-64Z"/></g>
+  <g fill="url(#rim)"><rect x="267" y="623" width="1070" height="28" rx="14"/><rect x="395" y="421" width="316" height="24" rx="12"/><rect x="935" y="350" width="310" height="24" rx="12"/></g>
+  <g fill="#0d2638" opacity=".38"><ellipse cx="440" cy="639" rx="63" ry="10"/><ellipse cx="665" cy="639" rx="63" ry="10"/><ellipse cx="912" cy="639" rx="63" ry="10"/><ellipse cx="1127" cy="367" rx="53" ry="9"/></g>
+  <g transform="translate(438 548)" fill="#b9e983" stroke="#17394b" stroke-width="9" stroke-linejoin="round">
+    <path d="m-31 10-16 72h34L0 45l16 37h35L29 10Z"/>
+    <path d="m-29 10-41 29-18-20 37-41 23 5m56 27 40 14 10-22-48-29"/>
+    <rect x="-35" y="-66" width="70" height="76" rx="26"/>
+    <path d="M-25-35h50" fill="none" stroke="#e8fad5" stroke-width="12"/>
+  </g>
+  <g transform="translate(665 553)" fill="#75b9f8" stroke="#17394b" stroke-width="9" stroke-linejoin="round">
+    <path d="m-31 6-24 68h33L0 41l16 34h34L29 6Z"/>
+    <path d="m-27 1-35-15-19 25 37 21m72-28 37-48 17 17-27 53"/>
+    <path d="M-39-39q0-39 39-39t39 39L29 7h-58Z"/>
+    <path d="m-25-40 50 7" fill="none" stroke="#daf0ff" stroke-width="12"/>
+  </g>
+  <g transform="translate(912 544)" fill="#f6bd7b" stroke="#17394b" stroke-width="9" stroke-linejoin="round">
+    <path d="m-31 13-18 71h33L1 50l23 34h33L29 13Z"/>
+    <path d="m-29 5-47-24-12 24 40 30m77-32 45 3 3-28-46-3"/>
+    <path d="m-39-52 15-22h49l18 22-11 65h-63Z"/>
+    <path d="M-25-35h50" fill="none" stroke="#fff1c9" stroke-width="12"/>
+  </g>
+  <g transform="translate(1126 280)" fill="#c5a4eb" stroke="#17394b" stroke-width="9" stroke-linejoin="round">
+    <path d="m-26 14-18 68h29L1 50l16 32h29L27 14Z"/>
+    <path d="m-27 10-37 10-8-23 42-13m59 23 35-31 15 19-30 36"/>
+    <rect x="-34" y="-58" width="68" height="74" rx="28"/>
+    <path d="m-22-29 44-6" fill="none" stroke="#f4e7ff" stroke-width="12"/>
+  </g>
+  <g fill="#d9f5dd" opacity=".6"><circle cx="293" cy="328" r="4"/><circle cx="787" cy="235" r="4"/><circle cx="1368" cy="404" r="4"/><circle cx="560" cy="114" r="3"/><circle cx="1049" cy="137" r="3"/></g>
+</svg>

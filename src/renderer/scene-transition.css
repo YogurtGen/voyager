@@ -1,0 +1,226 @@
+:root {
+  --ease-scene: cubic-bezier(0.77, 0, 0.175, 1);
+}
+:root:is(
+    [data-scene-transition="pair-home"],
+    [data-scene-transition="home-pair"]
+  )
+  .voyager-pairing {
+  view-transition-name: voyager-qr;
+}
+:root:is(
+    [data-scene-transition="pair-home"],
+    [data-scene-transition="home-pair"]
+  )
+  .voyager-collection {
+  view-transition-name: voyager-shelf;
+}
+:root[data-scene-transition="pair-home"] {
+  --flow-direction: 1;
+}
+:root[data-scene-transition="home-pair"] {
+  --flow-direction: -1;
+}
+::view-transition-group(voyager-qr),
+::view-transition-group(voyager-shelf) {
+  animation-duration: 280ms;
+}
+::view-transition-old(voyager-qr),
+::view-transition-old(voyager-shelf) {
+  animation: voyager-flow-out 180ms var(--ease) both;
+}
+::view-transition-new(voyager-qr),
+::view-transition-new(voyager-shelf) {
+  animation: voyager-flow-in 240ms 40ms var(--ease) both;
+}
+@keyframes voyager-flow-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(calc(var(--flow-direction) * -12px)) scale(0.99);
+  }
+}
+@keyframes voyager-flow-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--flow-direction) * 18px)) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+:root[data-scene-transition="disc"] .collection-disc[data-active] .disc-body,
+:root[data-scene-transition="disc"] .lobby-disc .disc-body {
+  view-transition-name: voyager-disc;
+}
+:root[data-scene-transition^="game-"] .lobby-disc .disc-body {
+  view-transition-name: voyager-disc;
+}
+:root[data-scene-transition^="game-"] .lobby-orbit-labels {
+  view-transition-name: voyager-orbit-labels;
+}
+:root[data-scene-transition^="game-"] .game-lobby-copy {
+  view-transition-name: voyager-game-copy;
+}
+:root[data-scene-transition^="game-"] .game-lobby-controller {
+  view-transition-name: voyager-game-controller;
+}
+:root[data-scene-transition^="game-"] .game-lobby-backdrop {
+  view-transition-name: voyager-game-background;
+}
+:root[data-scene-transition="game-next"] {
+  --game-direction: 1;
+}
+:root[data-scene-transition="game-prev"] {
+  --game-direction: -1;
+}
+:root[data-scene-transition^="game-"]::view-transition-old(voyager-disc) {
+  animation: voyager-disc-out 280ms var(--ease-scene) both;
+}
+:root[data-scene-transition^="game-"]::view-transition-new(voyager-disc) {
+  animation: voyager-disc-in 280ms var(--ease-scene) both;
+}
+@keyframes voyager-disc-out {
+  from {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: rotate(var(--game-disc-step));
+  }
+}
+@keyframes voyager-disc-in {
+  from {
+    opacity: 0;
+    transform: rotate(calc(var(--game-disc-step) * -1));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+::view-transition-group(voyager-orbit-labels),
+::view-transition-group(voyager-game-copy),
+::view-transition-group(voyager-game-controller),
+::view-transition-group(voyager-game-background) {
+  animation-duration: 280ms;
+  animation-timing-function: var(--ease-scene);
+}
+::view-transition-old(voyager-orbit-labels) {
+  animation: none;
+  opacity: 0;
+}
+::view-transition-new(voyager-orbit-labels) {
+  animation: voyager-ring-turn 280ms var(--ease-scene) both;
+}
+@keyframes voyager-ring-turn {
+  from {
+    transform: rotate(var(--game-ring-step));
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+::view-transition-old(voyager-game-copy),
+::view-transition-old(voyager-game-controller) {
+  animation: voyager-copy-out 280ms var(--ease-scene) both;
+}
+::view-transition-new(voyager-game-copy),
+::view-transition-new(voyager-game-controller) {
+  animation: voyager-copy-in 280ms var(--ease-scene) both;
+}
+@keyframes voyager-copy-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  62.5%,
+  to {
+    opacity: 0;
+    transform: translateY(calc(var(--game-direction) * -24px));
+  }
+}
+@keyframes voyager-copy-in {
+  from,
+  37.5% {
+    opacity: 0;
+    transform: translateY(calc(var(--game-direction) * 24px));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+::view-transition-old(voyager-game-background) {
+  animation: none;
+  opacity: 1;
+}
+::view-transition-new(voyager-game-background) {
+  animation: voyager-background-in 280ms var(--ease-scene) both;
+}
+@keyframes voyager-background-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+:root[data-scene-transition="panel"] .library-workspace,
+:root[data-scene-transition="studio"] .library-workspace,
+:root[data-scene-transition="panel"] .modal:has(.voyager-media-editor) {
+  view-transition-name: voyager-panel;
+}
+::view-transition-group(root) {
+  animation-duration: 180ms;
+}
+::view-transition-group(voyager-disc) {
+  animation-duration: 280ms;
+  animation-timing-function: var(--ease-scene);
+}
+::view-transition-old(voyager-disc),
+::view-transition-new(voyager-disc) {
+  height: 100%;
+  mix-blend-mode: normal;
+  object-fit: fill;
+  animation-duration: 180ms;
+}
+::view-transition-group(voyager-panel) {
+  animation-duration: 220ms;
+  animation-timing-function: var(--ease);
+}
+::view-transition-new(voyager-panel) {
+  animation: voyager-panel-enter 220ms var(--ease) both;
+}
+::view-transition-old(voyager-panel) {
+  animation: voyager-panel-exit 160ms var(--ease) both;
+}
+@keyframes voyager-panel-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes voyager-panel-exit {
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+}
+:root[data-motion="reduced"]::view-transition-group(*) {
+  animation-duration: 0s !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"])::view-transition-group(*) {
+    animation-duration: 0s !important;
+  }
+}

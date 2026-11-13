@@ -1,0 +1,363 @@
+.liquid-logo {
+  position: absolute;
+  inset: 0;
+  background: #05070d;
+}
+.liquid-logo canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.liquid-logo-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #f4f7ff;
+}
+.liquid-logo-wordmark {
+  position: absolute;
+  top: calc(50% + 160px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: #d8e5fa;
+  opacity: 0;
+  transition: opacity 180ms var(--ease);
+}
+.liquid-logo-wordmark[data-visible="true"] {
+  opacity: 1;
+}
+.voyager-opening:focus {
+  outline: none;
+}
+.voyager-game-lobby {
+  --lobby-disc-size: min(52vw, 74dvh);
+  height: calc(100dvh - var(--host-offset, 74px));
+  min-height: 0;
+  overflow: clip;
+}
+.voyager-game-lobby .game-lobby-layout {
+  display: block;
+  position: static;
+  margin-top: 4vh;
+}
+.voyager-game-lobby .game-lobby-copy {
+  position: relative;
+  z-index: 3;
+  width: min(38%, calc((100vw - var(--lobby-disc-size)) / 2 - 4.2vw - 24px));
+  max-width: 580px;
+  pointer-events: auto;
+}
+.voyager-game-lobby .game-lobby-controller {
+  position: absolute;
+  z-index: 3;
+  top: calc(95px + 4vh);
+  right: 4.2vw;
+  width: 24%;
+  max-width: 300px;
+  pointer-events: auto;
+}
+.voyager-game-lobby .game-lobby-copy h1 {
+  font-size: clamp(30px, 3.5vw, 64px);
+  line-height: 1.06;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.voyager-game-lobby .game-lobby-copy > p {
+  font-size: 13px;
+  line-height: 1.75;
+}
+.voyager-game-lobby .game-lobby-description {
+  margin-top: 20px;
+  max-height: clamp(72px, 16dvh, 176px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #465b7c transparent;
+}
+.game-lobby-description:focus-visible {
+  outline: 2px solid #72a7ff;
+  outline-offset: 4px;
+}
+.voyager-game-lobby .lobby-disc-stage {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 6px);
+  bottom: auto;
+  width: max-content;
+  height: var(--lobby-disc-size);
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 3vw, 40px);
+  margin: 0;
+  min-height: 0;
+  flex: none;
+}
+.voyager-game-lobby .lobby-disc {
+  --diameter: var(--lobby-disc-size);
+  animation: none;
+  transform: rotate(-6deg);
+}
+.lobby-game-orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--lobby-disc-size) * 1.4);
+  height: calc(var(--lobby-disc-size) * 1.4);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  color: #adc6ec66;
+}
+.lobby-game-orbit svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.lobby-orbit-dot {
+  fill: #e8c77a;
+}
+.lobby-orbit-labels text {
+  fill: #a9bad5;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.lobby-orbit-labels text[aria-pressed="true"] {
+  fill: #f4f7ff;
+  font-weight: 600;
+}
+.lobby-orbit-labels text:focus-visible {
+  outline: none;
+  text-decoration: underline;
+  fill: #f4f7ff;
+}
+.voyager-game-lobby .lobby-disc-stage .orbit-arrow {
+  position: fixed;
+  bottom: calc(var(--lobby-disc-size) / 2 + 90px);
+  z-index: 5;
+}
+html:has(.voyager-pairing),
+body:has(.voyager-pairing),
+html:has(.voyager-game-lobby),
+body:has(.voyager-game-lobby) {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+.voyager-pairing {
+  height: calc(100dvh - var(--host-offset, 74px));
+  min-height: 0;
+  padding: clamp(16px, 3dvh, 36px) clamp(24px, 3vw, 60px);
+  grid-template-columns: minmax(230px, 0.7fr) minmax(580px, 1.3fr);
+  gap: clamp(20px, 3vw, 48px);
+  overflow: clip;
+}
+.voyager-pair-panel {
+  min-width: 0;
+}
+.voyager-pair-panel .player-slots {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.voyager-pair-panel .player-slot {
+  min-width: 0;
+  padding: 10px;
+  gap: 7px;
+}
+.voyager-pair-panel .player-slot strong {
+  font-size: 11px;
+}
+.voyager-pair-panel .player-slot small {
+  font-size: 9px;
+}
+@media (max-height: 760px) {
+  .voyager-pairing {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .voyager-pair-panel {
+    padding: 20px;
+  }
+  .voyager-pair-panel .pairing-content {
+    gap: 20px;
+    grid-template-columns: minmax(0, 1fr) 180px;
+  }
+  .voyager-pair-panel .pairing-copy h2 {
+    font-size: 21px;
+    margin: 10px 0;
+  }
+  .voyager-pair-panel .pairing-copy h2 br {
+    display: none;
+  }
+  .voyager-pair-panel .pairing-copy > p {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .voyager-pair-panel .steps {
+    margin: 12px 0;
+  }
+  .voyager-pair-panel .steps li {
+    font-size: 11px;
+    line-height: 1.4;
+    margin: 7px 0;
+  }
+  .voyager-pair-panel .manual-connect {
+    margin-top: 12px;
+    padding: 10px;
+    gap: 7px;
+  }
+  .voyager-pair-panel .pairing-scan {
+    padding-top: 16px;
+    gap: 8px;
+  }
+  .voyager-pair-panel .qr-wrap {
+    width: 180px;
+  }
+  .voyager-pair-panel .network-note {
+    display: none;
+  }
+  .voyager-pair-panel .player-slots {
+    margin-top: 14px;
+    padding-top: 12px;
+  }
+  .voyager-pair-panel .player-slot {
+    min-height: 52px;
+  }
+  .voyager-pair-panel .continue-button {
+    min-height: 40px;
+    margin-top: 12px;
+  }
+  .voyager-pair-panel .lobby-footnote {
+    margin: 9px 0 0;
+    font-size: 10px;
+  }
+  .pairing-welcome {
+    padding-bottom: 0;
+  }
+  .pairing-welcome h1 {
+    font-size: 30px;
+  }
+}
+.voyager-game-lobby .lobby-disc-stage .orbit-arrow:first-of-type {
+  left: calc(-50vw + 50% + 32px);
+}
+.voyager-game-lobby .lobby-disc-stage .orbit-arrow:last-of-type {
+  right: calc(-50vw + 50% + 32px);
+}
+.lobby-disc .disc-face,
+.lobby-disc .disc-edge {
+  mask: radial-gradient(circle closest-side, transparent 16.6%, #000 17.1%);
+}
+.lobby-disc .disc-print {
+  inset: 0;
+  animation: disc-idle-spin 24s linear infinite;
+  animation-play-state: paused;
+}
+.lobby-disc .disc-roll {
+  transform: rotate(0deg);
+}
+.lobby-disc[data-spinning="true"] .disc-print {
+  animation-play-state: running;
+}
+.voyager-game-lobby .trailer-controls {
+  position: absolute;
+  right: 4.2vw;
+  bottom: 18px;
+  margin: 0;
+}
+.voyager-game-lobby .game-lobby-top {
+  position: relative;
+  z-index: 4;
+}
+@media (max-height: 800px) {
+  .voyager-game-lobby {
+    --lobby-disc-size: min(52vw, 74dvh);
+  }
+  .voyager-game-lobby .game-lobby-copy h1 {
+    font-size: 34px;
+    -webkit-line-clamp: 2;
+    margin: 12px 0;
+  }
+  .voyager-game-lobby .game-lobby-copy > p {
+    font-size: 11px;
+  }
+  .voyager-game-lobby .game-lobby-meta {
+    margin-bottom: 12px;
+  }
+  .voyager-game-lobby .game-lobby-actions {
+    margin-top: 16px;
+  }
+  .voyager-game-lobby .game-lobby-description {
+    margin-top: 16px;
+  }
+  .voyager-game-lobby .game-lobby-controller {
+    top: 110px;
+  }
+  .voyager-game-lobby .game-lobby-layout {
+    margin-top: 22px;
+  }
+  .voyager-game-lobby .game-lobby-copy {
+    display: flex;
+    flex-direction: column;
+    height: calc(100dvh - var(--host-offset, 74px) - 246px);
+    overflow: hidden;
+  }
+  .game-lobby-copy > :not(.game-lobby-description) {
+    flex-shrink: 0;
+  }
+  .voyager-game-lobby .game-lobby-description {
+    flex: 1;
+    min-height: 30px;
+    margin: 12px 0 0;
+  }
+  .voyager-game-lobby .game-lobby-note {
+    margin-top: 8px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+}
+@media (max-height: 700px) {
+  .voyager-game-lobby .game-lobby-copy h1 {
+    font-size: 28px;
+    margin: 10px 0;
+  }
+  .voyager-game-lobby .game-lobby-meta {
+    margin-bottom: 8px;
+  }
+  .voyager-game-lobby .game-lobby-actions {
+    margin-top: 12px;
+  }
+  .voyager-game-lobby .game-lobby-actions .button {
+    min-height: 44px;
+  }
+}
+@media (max-width: 1100px) {
+  .voyager-game-lobby .game-lobby-controller {
+    width: 26%;
+  }
+  .voyager-game-lobby .game-lobby-controller h2 {
+    font-size: 19px;
+  }
+}
+:root[data-motion="reduced"] .lobby-disc .disc-print {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .lobby-disc .disc-print {
+    animation: none;
+  }
+}

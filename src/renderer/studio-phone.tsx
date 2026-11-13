@@ -1,0 +1,256 @@
+import { PersonalLayoutEditor, usePersonalLayout } from "./personal-layout";
+import { resolveTheme } from "../shared/studio-engine";
+import { useEffect, useMemo, useRef, useState } from "react";
+import type { ClientMessage, Player, SessionState } from "../shared/types";
+import { nativeSlotAllowed } from "../shared/types";
+import { controllerAssets } from "../shared/studio-validation";
+import { StudioSurface } from "./studio-surface";
+import { ControllerHaptics } from "./haptics";
+import { Icon } from "./ui";
+import {StudioPhoneFrame} from "./studio-phone-frame";
+export function StudioPhone({
+  state,
+  player,
+  token,
+  connection,
+  send,
+  nextSequence,
+  haptics,
+  onFullscreen,
+  error,
+  fullscreenHint,
+  rtt=null,
+}: {
+  fullscreenHint: string;
+  rtt?:number|null;
+  state: SessionState;
+  player: Player;
+  token: string;
+  connection: string;
+  send: (m: ClientMessage) => void;
+  nextSequence: () => number;
+  haptics: ControllerHaptics;
+  onFullscreen: () => void;
+  error: string;
+}) {
+  const session = state.studio!;
+  const definition = useMemo(
+    () => session.definition,
+    [
+      session.definition.revision,
+      session.modeId,
+      state.epoch,
+      state.selectedGameId,
+    ],
+  );
+  const mode =
+    definition.modes.find((m) => m.id === session.modeId) ??
+    definition.modes[0];
+  const [settings, setSettings] = useState(false),
+    [vibration, setVibration] = useState(haptics.enabled),
+    [mirror, setMirror] = useState(false);
+  const [variant, setVariant] = useState<"classic" | "assisted">(() => {
+    try {
+      return localStorage.getItem(
+        "waterconsole.variant." + state.selectedGameId,
+      ) === "classic"
+        ? "classic"
+        : "assisted";
+    } catch {
+      return "assisted";
+    }
+  });
+  const [images, setImages] = useState<Record<string, string>>({});
+  const layoutRoot = useRef<HTMLDivElement>(null);
+  const personal = usePersonalLayout(
+    layoutRoot,
+    `${state.selectedGameId}.${mode.id}.${variant}.${mirror ? "left" : "right"}`,
+    () => haptics.stop(),
+    definition.revision,
+  );
+  const theme = resolveTheme(definition, mode, player.canNavigate, player.slot);
+  const current = useRef(state);
+  current.current = state;
+  const slotAllowed =
+    session.preview ||
+    nativeSlotAllowed(state.native, state.displayMode, player.slot);
+  useEffect(() => {
+    const urls: string[] = [];
+    let active = true;
+    const abort = new AbortController();
+    const ids = controllerAssets(definition);
+    void Promise.all(
+      ids.map(async (id) => {
+        try {
+          const response = await fetch("/api/controller-assets/" + id, {
+            headers: { Authorization: "Bearer " + token },
+            signal: abort.signal,
+          });
+          if (!response.ok) return;
+          const url = URL.createObjectURL(await response.blob());
+          urls.push(url);
+          if (active) setImages((old) => ({ ...old, [id]: url }));
+        } catch {}
+      }),
+    );
+    return () => {
+      active = false;
+      abort.abort();
+      urls.forEach((url) => URL.revokeObjectURL(url));
+      setImages({});
+    };
+  }, [definition, token]);
+  useEffect(() => {
+    haptics.stop();
+    haptics.suspended =
+      settings ||
+      personal.editing ||
+      connection !== "connected" ||
+      !slotAllowed;
+    return () => {
+      haptics.suspended = false;
+    };
+  }, [
+    state.epoch,
+    session.modeId,
+    variant,
+    connection,
+    settings,
+    personal.editing,
+    slotAllowed,
+  ]);
+  const enabled =
+    connection === "connected" &&
+    !settings &&
+    !personal.editing &&
+    slotAllowed &&
+    (session.preview ||
+      (state.phase === "native" &&
+        state.native.focused &&
+        state.native.status === "running" &&
+        !state.native.quitting));
+  const updateVariant = (value: "classic" | "assisted") => {
+    setVariant(value);
+    try {
+      localStorage.setItem(
+        "waterconsole.variant." + state.selectedGameId,
+        value,
+      );
+    } catch {}
+  };
+  return (
+    <StudioPhoneFrame title={state.catalog?.find(g=>g.id===state.selectedGameId)?.title??"WaterConsole"} name={player.name} slot={player.slot} navigator={player.canNavigate} connected={connection==="connected"} rtt={rtt} theme={theme} modes={definition.modes} modeId={mode.id} onMode={modeId=>send({type:"studio-mode",modeId})} onSettings={()=>setSettings(!settings)} onFullscreen={onFullscreen} onHome={()=>send({type:"nav",action:"library"})} preview={session.preview} status={session.preview?undefined:state.native.quitting?"Closing game…":state.native.status==="starting"?"Launching…":!slotAllowed?"Spectating":state.native.focused?"Game in focus":"Focus game on PC"} extra={definition.allowPersonal&&mode.controls.some(c=>c.variant!=="all")?<select aria-label="Control style" value={variant} onChange={e=>updateVariant(e.target.value as any)}><option value="assisted">Assisted · Linked inputs</option><option value="classic">Classic · Separate controls</option></select>:undefined}>
+      {((!enabled && !session.preview) || error) && (
+        <div className="studio-phone-notice" role="status">
+          {personal.editing
+            ? "Controls paused while you adjust the layout."
+            : settings
+              ? "Controls paused while settings are open."
+              : session.preview
+                ? "Safe preview · your inputs do not control a game."
+                : !slotAllowed
+                  ? `Spectating · this game uses the first ${state.native.maxPlayers ?? 0} player slots.`
+                  : error ||
+                    state.native.message ||
+                    "Focus the game window on your PC to enable controls."}
+        </div>
+      )}
+      {fullscreenHint && (
+        <button className="studio-phone-rotate" onClick={onFullscreen}>
+          {fullscreenHint}
+        </button>
+      )}
+      <div className="studio-phone-canvas" ref={layoutRoot}>
+        <StudioSurface
+          definition={definition}
+          modeId={mode.id}
+          slot={player.slot}
+          navigator={player.canNavigate}
+          variant={variant}
+          mirror={mirror}
+          epoch={state.epoch}
+          enabled={enabled}
+          asset={(id) => images[id]}
+          onInput={(input) => {
+            const s = current.current;
+            if (
+              s.studio &&
+              s.studio.definition.revision === input.revision &&
+              s.studio.modeId === input.modeId &&
+              connection === "connected"
+            )
+              send({
+                type: "studio-input",
+                version: 1,
+                epoch: s.epoch,
+                seq: nextSequence(),
+                input,
+              });
+          }}
+          onPress={(duration) => {
+            if (enabled && !document.hidden && document.hasFocus()) {
+              haptics.activate();
+              haptics.cue(duration);
+            }
+          }}
+        />
+      </div>
+      <PersonalLayoutEditor model={personal} />
+      {settings && (
+        <section
+          className="studio-phone-settings"
+          aria-label="Controller settings"
+        >
+          <div>
+            <h2>Your controller</h2>
+            <button onClick={() => setSettings(false)}>Done</button>
+          </div>
+          <button
+            onClick={() => {
+              setSettings(false);
+              personal.begin();
+            }}
+          >
+            Adjust layout
+          </button>
+          <p>
+            Move and resize controls on this phone only. Your host’s bindings
+            stay the same.
+          </p>
+          <label>
+            <input
+              type="checkbox"
+              checked={vibration}
+              disabled={!haptics.supported}
+              onChange={(e) => {
+                setVibration(e.target.checked);
+                haptics.setEnabled(e.target.checked);
+              }}
+            />
+            Vibration
+          </label>
+          <button
+            disabled={!haptics.supported || !vibration}
+            onClick={() => haptics.test()}
+          >
+            Test vibration
+          </button>
+          {!haptics.supported && (
+            <p>This browser does not support vibration.</p>
+          )}
+          <label>
+            <input
+              type="checkbox"
+              checked={mirror}
+              onChange={(e) => setMirror(e.target.checked)}
+            />
+            Left-handed layout
+          </label>
+          <p>
+            Your host edits colors, buttons and bindings in Controller Studio.
+          </p>
+        </section>
+      )}
+    </StudioPhoneFrame>
+  );
+}
