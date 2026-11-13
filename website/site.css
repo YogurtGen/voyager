@@ -1901,6 +1901,14 @@ details[open] summary:after {
 .carousel-controls {
   flex: none;
 }
+.collection-section .section-intro {
+  margin-bottom: 112px;
+}
+@media (max-width: 780px) {
+  .collection-section .section-intro {
+    margin-bottom: 64px;
+  }
+}
 #disc-count {
   white-space: nowrap;
 }

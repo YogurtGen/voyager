@@ -14,7 +14,7 @@ The hero and download section both place **Support us immediately beside Downloa
 
 - `node scripts/check-website.mjs`: passed. Checks local assets/anchors, support URL/placement, honest demo/bundled-content wording, JavaScript syntax, screenshot transfer sizes, deployment folder scope, carousel wrapping, finite poses, spring settling and bounded swipe destinations.
 - TypeScript: the application's unchanged source passed `tsc --project tsconfig.json --noEmit` using installed dependencies. The website itself is static HTML/CSS and native JavaScript modules.
-- Browser QA in the Codex in-app browser: desktop hero, all three screenshot tabs, keyboard tab selection, previous/next discs, keyboard/pointer demo movement, A jump, B reset, prompt clipboard success, all eight FAQs, pause/resume and mobile menu/Escape focus return.
+- Browser QA in the Codex in-app browser: desktop hero, all three screenshot tabs, keyboard tab selection, previous/next discs and drag gestures, keyboard/pointer demo movement, A jump, B reset, prompt clipboard success, all eight FAQs, pause/resume and mobile menu/Escape focus return.
 - Responsive layout measurements at 360, 390, 768, 1024, 1366 and 1920 px: document scroll width did not exceed its client width. D-pad targets measured 44 × 44 px.
 - No browser console errors or warnings were recorded in the completed local interaction checks. All inspected product images loaded successfully.
 - Solid contrast calculations: main text on action blue 5.49:1; secondary text on panel 8.52:1; signal blue on space black 8.33:1; control edge on panel 4.40:1. Hero copy sits over an opaque/darkened region rather than over the spacecraft.
