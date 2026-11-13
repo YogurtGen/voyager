@@ -1,12 +1,13 @@
 # Voyager website
 
-Static GitHub Pages website. HTML, CSS and native JavaScript modules; no package installation or bundler is needed.
+Static GitHub Pages website. HTML, CSS and native JavaScript modules; no package installation or bundler is needed. A small Node build adds content-derived URL versions so previous visitors receive updated CSS, scripts and assets after deployment.
 
 From the repository root:
 
 ```sh
 node scripts/serve-website.mjs
 node scripts/check-website.mjs
+node scripts/build-website.mjs
 npm run typecheck
 ```
 
@@ -14,7 +15,7 @@ Preview: `http://127.0.0.1:4173/voyager/`. The server binds only to loopback and
 
 ## Publishing
 
-GitHub Pages uses **GitHub Actions** as its source. The `Deploy Voyager website` workflow checks and uploads only `website/`, then deploys to `https://yogurtgen.github.io/voyager/`. A push to `main` that changes the site, checker or workflow updates the live page. It can also be run manually from Actions.
+GitHub Pages uses **GitHub Actions** as its source. The `Deploy Voyager website` workflow checks and builds only `website/` into a dedicated `.local/website-<content hash>` artifact, then deploys to `https://yogurtgen.github.io/voyager/`. The artifact contains only copied public site files, never the rest of `.local/`. A push to `main` that changes the site, build/check scripts or workflow updates the live page. It can also be run manually from Actions.
 
 The Electron build and user libraries are separate from this website. Do not upload `dist/`, `.local/`, installed games, user settings or session data to Pages.
 

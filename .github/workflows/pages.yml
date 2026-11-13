@@ -6,6 +6,7 @@ on:
     paths:
       - "website/**"
       - "scripts/check-website.mjs"
+      - "scripts/build-website.mjs"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -30,12 +31,15 @@ jobs:
       - uses: actions/checkout@v6
       - name: Check website
         run: node scripts/check-website.mjs
+      - name: Build versioned static assets
+        id: site
+        run: node scripts/build-website.mjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload public website
         uses: actions/upload-pages-artifact@v4
         with:
-          path: website
+          path: ${{ steps.site.outputs.directory }}
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4

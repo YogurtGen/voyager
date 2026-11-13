@@ -1,6 +1,6 @@
 # Voyager public website
 
-Built 14 November 2026 for `https://yogurtgen.github.io/voyager/`. Source is in `website/`; GitHub Pages uploads only that directory through `.github/workflows/pages.yml`.
+Built 14 November 2026 for `https://yogurtgen.github.io/voyager/`. Source is in `website/`; `.github/workflows/pages.yml` builds a content-versioned copy of only that public directory, then uploads the generated artifact to GitHub Pages. Browser checks confirmed the need to invalidate cached asset URLs after an update.
 
 ## Direction
 

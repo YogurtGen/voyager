@@ -79,8 +79,9 @@ const workflow = readFileSync(
   "utf8",
 );
 assert(
-  workflow.includes("path: website"),
-  "Pages must upload only the public website",
+  workflow.includes("node scripts/build-website.mjs") &&
+    workflow.includes("path: ${{ steps.site.outputs.directory }}"),
+  "Pages must upload only the generated public website",
 );
 const options = {
   spacing: 1.02,
