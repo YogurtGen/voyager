@@ -1,20 +1,6 @@
-3D CD Disc Carousel — Kedhareswer Naidu
-https://21st.dev/@kedhareswer/components/disc-cascade-carousel
-
-Liquid Glass Logo Reveal — Denis Kuzin
-https://21st.dev/@shepovalovdenis/components/liquid-glass-logo-reveal
-Based on glass-icon-reveal: Copyright (c) 2026 Zanwei Guo
-https://github.com/zanwei/glass-icon-reveal/blob/main/LICENSE
-
-Both component pages identify the MIT License. Voyager adapts the public
-browser-demo artifacts identified in docs/REFERENCE-INVESTIGATION.md.
-
-Additional motion reference: Rotating Flavor Slider — Kedhareswer Naidu
-https://21st.dev/@kedhareswer/components/rotating-flavor-slider
-Public demo observation and small geometry helpers are recorded in
-docs/NAVIGATION-LOBBY-REVIEW.md. Demo photography and GSAP are not bundled.
-
 MIT License
+
+Copyright (c) 2026 WaterConsole contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

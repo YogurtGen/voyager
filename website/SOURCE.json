@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/YogurtGen/WaterConsole",
+  "commit": "e54bfefdc8e16f2b2987f3a7b1941d2f77755968",
+  "license": "MIT",
+  "sourceFiles": {
+    "site.css": "docs/site.css",
+    "site.js": "docs/site.js"
+  },
+  "sha256": {
+    "site.css": "3d895d66b7e71069d48807d359f18f8613efcb801e0c6a652a2def08be8479da",
+    "site.js": "d8c06a166aacc01da59f5c70731bc9a53d7ac0afe6b60d48701033a1d2de4d4a"
+  }
+}

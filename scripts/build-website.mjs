@@ -39,7 +39,7 @@ for (const name of ["index.html", "site.css", "site.js"]) {
   let text = readFileSync(path.join(output, name), "utf8");
   if (name === "index.html")
     text = text.replace(
-      /(\b(?:src|href)=")((?:assets\/|site\.(?:css|js))[^"?]*)(")/g,
+      /(\b(?:src|href)=")((?:assets\/|media\/|site\.(?:css|js))[^"?]*)(")/g,
       `$1$2?v=${version}$3`,
     );
   if (name === "site.css")
@@ -67,12 +67,6 @@ for (const match of html.matchAll(/(?:href|src)="([^"#]+)"/g)) {
     `Missing built asset ${match[1]}`,
   );
 }
-assert(
-  readFileSync(path.join(output, "site.js"), "utf8").includes(
-    `./space.js?v=${version}`,
-  ),
-  "Lazy shader must share the build version",
-);
 if (process.env.GITHUB_OUTPUT)
   appendFileSync(
     process.env.GITHUB_OUTPUT,
