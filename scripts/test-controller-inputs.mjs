@@ -75,6 +75,9 @@ try {
           await page.mouse.move(p.x + 2, p.y + 1);
           out = await page.evaluate(() => window.__output);
           if (backend === "gamepad") assert.equal(out.axes[axis], 1, "Small touch movement must not weaken a press");
+          await page.mouse.move(p.x + 2, p.y + 20);
+          out = await page.evaluate(() => window.__output);
+          if (backend === "gamepad") assert.equal(out.axes[axis], 1, "Movement perpendicular to the slider must not weaken a press");
           await page.mouse.up(); await neutral();
         }
         const p = await point(label, .75);

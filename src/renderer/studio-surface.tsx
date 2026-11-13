@@ -247,7 +247,10 @@ export function StudioSurface({
     let x = 0,
       y = 0;
     if (control.kind === "trigger" && pointer.triggerStart) {
-      if (Math.hypot(e.clientX - pointer.triggerStart.x, e.clientY - pointer.triggerStart.y) < 6) return;
+      const distance = rect.height > rect.width
+        ? Math.abs(e.clientY - pointer.triggerStart.y)
+        : Math.abs(e.clientX - pointer.triggerStart.x);
+      if (distance < 6) return;
       pointer.triggerStart = undefined;
     }
     if (control.kind === "trigger")
