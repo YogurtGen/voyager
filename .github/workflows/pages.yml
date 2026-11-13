@@ -1,0 +1,41 @@
+name: Deploy Voyager website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "website/**"
+      - "scripts/check-website.mjs"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: voyager-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check website
+        run: node scripts/check-website.mjs
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload public website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: website
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

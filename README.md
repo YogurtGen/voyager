@@ -11,6 +11,7 @@
   <img alt="Windows x64" src="https://img.shields.io/badge/platform-Windows%20x64-18243b">
 </p>
 <p align="center">
+  <a href="https://yogurtgen.github.io/voyager/">Website</a> ·
   <a href="https://github.com/YogurtGen/voyager/releases/latest">Download</a> ·
   <a href="#start-playing">Quick start</a> ·
   <a href="#add-a-game-with-codex-or-claude-code">Add a game with AI</a> ·
