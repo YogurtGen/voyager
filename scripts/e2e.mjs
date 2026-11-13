@@ -5,6 +5,7 @@ import path from "node:path";
 import { mkdir, writeFile, readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import net from "node:net";
+import { newLocalGame } from "../src/shared/studio-model.ts";
 
 const output = path.resolve("test-results");
 const checks = [];
@@ -330,6 +331,45 @@ try {
   check(
     "Ending a session disconnects controllers and returns the host to Lobby",
   );
+  const game = newLocalGame();
+  game.title = "Isolated trigger regression fixture";
+  const saved = await host.evaluate(game => window.waterconsole.library({ type: "save", game }), game);
+  assert.ok(saved.ok, saved.error);
+  const triggerPhone = await phone("Trigger check");
+  await approve("Trigger check", triggerPhone.page);
+  const preview = await host.evaluate(game => window.waterconsole.library({ type: "preview", gameId: game.id, definition: game.controller, modeId: "standard" }), saved.game);
+  assert.ok(preview.ok, preview.error);
+  await triggerPhone.page.setViewportSize({ width: 844, height: 390 });
+  const ltControl = saved.game.controller.modes.find(mode => mode.id === "standard").controls.find(control => control.label === "LT");
+  const rtControl = saved.game.controller.modes.find(mode => mode.id === "standard").controls.find(control => control.label === "RT");
+  const ltButton = triggerPhone.page.getByRole("button", { name: "LT", exact: true });
+  await expect(ltButton).toBeVisible();
+  const ltBounds = await ltButton.boundingBox();
+  const rtBounds = await triggerPhone.page.getByRole("button", { name: "RT", exact: true }).boundingBox();
+  assert.ok(ltBounds && rtBounds);
+  const triggerTouch = await triggerPhone.context.newCDPSession(triggerPhone.page);
+  const ltPoint = { x: ltBounds.x + ltBounds.width / 2, y: ltBounds.y + ltBounds.height / 2, id: 1 };
+  const rtPoint = { x: rtBounds.x + rtBounds.width / 2, y: rtBounds.y + rtBounds.height / 2, id: 2 };
+  const pressures = async () => {
+    const input = (await state()).players[0]?.studio;
+    return [input?.values[ltControl.id]?.x ?? 0, input?.values[rtControl.id]?.x ?? 0];
+  };
+  await triggerTouch.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [ltPoint, rtPoint] });
+  await expect.poll(pressures).toEqual([1, 1]);
+  await triggerTouch.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [ltPoint] });
+  await expect.poll(pressures).toEqual([0, 1]);
+  await triggerTouch.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+  await expect.poll(pressures).toEqual([0, 0]);
+  await ltButton.focus();
+  await triggerPhone.page.keyboard.down("Enter");
+  await expect.poll(pressures).toEqual([1, 0]);
+  await triggerPhone.page.keyboard.up("Enter");
+  await expect.poll(pressures).toEqual([0, 0]);
+  await host.evaluate(() => window.waterconsole.library({ type: "end-preview" }));
+  const removed = await host.evaluate(id => window.waterconsole.library({ type: "remove", id }), saved.game.id);
+  assert.ok(removed.ok, removed.error);
+  assert.deepEqual((await state()).catalog.map(game => game.id), ["controller-lab"]);
+  check("Compiled phone controller sends full independent LT/RT presses and keyboard trigger activation through the real server, then returns to a clean Lab-only catalog");
   assert.deepEqual(errors, []);
   assert.deepEqual(external, []);
   check(

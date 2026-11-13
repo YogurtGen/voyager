@@ -40,9 +40,9 @@ Get the files from **[GitHub Releases](https://github.com/YogurtGen/voyager/rele
 
 | File                          | Use it for                                                                                      |
 | ----------------------------- | ----------------------------------------------------------------------------------------------- |
-| `Voyager-Setup-0.1.0-x64.exe` | Install Voyager on Windows 10/11 x64.                                                           |
-| `Voyager-0.1.0-x64.zip`       | Portable app. Extract the **whole ZIP**, then run `Voyager.exe`.                                |
-| `Voyager-0.1.0-source.zip`    | Source, AI instructions, game toolkit and project launcher. Also available through `git clone`. |
+| `Voyager-Setup-0.1.1-x64.exe` | Install Voyager on Windows 10/11 x64.                                                           |
+| `Voyager-0.1.1-x64.zip`       | Portable app. Extract the **whole ZIP**, then run `Voyager.exe`.                                |
+| `Voyager-0.1.1-source.zip`    | Source, AI instructions, game toolkit and project launcher. Also available through `git clone`. |
 | `SHA256SUMS.txt`              | Verify downloaded files with `Get-FileHash -Algorithm SHA256`.                                  |
 
 The initial build is unsigned, so Windows may show an unrecognized-publisher prompt. The installer offers a private-network firewall rule; it requires administrator approval only if you choose to add that rule. Controller Lab itself does not require a virtual gamepad driver. Some added native games do.
@@ -125,6 +125,7 @@ This is an independent fan-made project, not an official Bluepoch product. See [
 npm run typecheck
 npm test
 npm run test:workflow
+npm run test:controllers
 npm run build
 npm run test:e2e
 ```

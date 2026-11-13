@@ -87,6 +87,7 @@ export function StudioSurface({
         originalId: string;
         group?: string;
         center?: { x: number; y: number };
+        triggerStart?: { x: number; y: number };
       }
     >(),
   );
@@ -245,6 +246,10 @@ export function StudioSurface({
     const rect = e.currentTarget.getBoundingClientRect();
     let x = 0,
       y = 0;
+    if (control.kind === "trigger" && pointer.triggerStart) {
+      if (Math.hypot(e.clientX - pointer.triggerStart.x, e.clientY - pointer.triggerStart.y) < 6) return;
+      pointer.triggerStart = undefined;
+    }
     if (control.kind === "trigger")
       x =
         rect.height > rect.width
@@ -290,8 +295,12 @@ export function StudioSurface({
       originalId: control.id,
       group: control.slideGroup,
       center,
+      triggerStart: control.kind === "trigger" ? { x: e.clientX, y: e.clientY } : undefined,
     });
-    if (control.kind === "button") emit();
+    if (control.kind === "trigger") {
+      values.current[control.id] = { x: 1, y: 0 };
+      emit();
+    } else if (control.kind === "button") emit();
     else move(e, control);
     press.current?.(control.feedback);
   }
@@ -396,13 +405,14 @@ export function StudioSurface({
               onKeyDown={(e) => {
                 if (
                   !enabled ||
-                  c.kind !== "button" ||
+                  !["button", "trigger"].includes(c.kind) ||
                   ![" ", "Enter"].includes(e.key) ||
                   e.repeat
                 )
                   return;
                 e.preventDefault();
                 pointers.current.set(-1, { controlId: c.id, originalId: c.id });
+                if (c.kind === "trigger") values.current[c.id] = { x: 1, y: 0 };
                 emit();
                 press.current?.(c.feedback);
               }}

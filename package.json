@@ -1,6 +1,6 @@
 {
   "name": "voyager-console",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Open-source Windows console with phone controllers, a 3D disc library, and AI-editable game layouts.",
   "author": "YogurtGen and WaterConsole contributors",
@@ -19,7 +19,8 @@
     "format": "node scripts/run-local.mjs node_modules/prettier/bin/prettier.cjs --write src scripts tests *.ts *.json",
     "pack": "npm run build && node scripts/run-local.mjs node_modules/electron-builder/cli.js --win --x64 --dir",
     "dist": "npm run build && node scripts/run-local.mjs node_modules/electron-builder/cli.js --win nsis zip --x64 && npm run release:organize",
-    "release:organize": "node scripts/run-local.mjs scripts/organize-release.mjs"
+    "release:organize": "node scripts/run-local.mjs scripts/organize-release.mjs",
+    "test:controllers": "node scripts/run-local.mjs scripts/test-controller-inputs.mjs && node scripts/run-local.mjs scripts/test-controller-native.mjs"
   },
   "dependencies": {
     "@fastify/static": "^10.1.7",
